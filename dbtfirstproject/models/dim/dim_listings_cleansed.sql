@@ -1,3 +1,9 @@
+{{
+  config(
+    materialized = 'view'
+    )
+}}
+
 WITH src_listings AS (
     SELECT * FROM {{ ref('src_listings') }}
 )
@@ -20,6 +26,6 @@ SELECT
     ) AS price,
     created_at,
     updated_at
-    
+
 FROM
   src_listings
