@@ -1,0 +1,50 @@
+[32m2024-07-29 06:01:04 +0200[0m - dagster - [34mDEBUG[0m - materialize_dbt_models - ab87591c-037a-448f-93a5-8561af6596ab - 10519 - LOGS_CAPTURED - Started capturing logs in process (pid: 10519).
+[32m2024-07-29 06:01:04 +0200[0m - dagster - [34mDEBUG[0m - materialize_dbt_models - ab87591c-037a-448f-93a5-8561af6596ab - 10519 - dbtfirstproject_dbt_assets - STEP_START - Started execution of step "dbtfirstproject_dbt_assets".
+[32m2024-07-29 06:01:04 +0200[0m - dagster - [34mINFO[0m - materialize_dbt_models - ab87591c-037a-448f-93a5-8561af6596ab - dbtfirstproject_dbt_assets - A dbt subsetted execution is not being performed. Using the default dbt selection arguments `['--select', 'fqn:*']`.
+[32m2024-07-29 06:01:04 +0200[0m - dagster - [34mINFO[0m - materialize_dbt_models - ab87591c-037a-448f-93a5-8561af6596ab - dbtfirstproject_dbt_assets - Copying `/Users/daniraouf/Documents/DBT /dbtfirstproject/target/partial_parse.msgpack` to `/Users/daniraouf/Documents/DBT /dbtfirstproject/target/dbtfirstproject_dbt_assets-ab87591-8b67b76/partial_parse.msgpack` to take advantage of partial parsing.
+[32m2024-07-29 06:01:04 +0200[0m - dagster - [34mINFO[0m - materialize_dbt_models - ab87591c-037a-448f-93a5-8561af6596ab - dbtfirstproject_dbt_assets - Running dbt command: `dbt build --select fqn:*`.
+[32m2024-07-29 06:01:08 +0200[0m - dagster - [34mINFO[0m - materialize_dbt_models - ab87591c-037a-448f-93a5-8561af6596ab - dbtfirstproject_dbt_assets - Finished dbt command: `dbt build --select fqn:*`.
+[32m2024-07-29 06:01:08 +0200[0m - dagster - [34mERROR[0m - [31mmaterialize_dbt_models - ab87591c-037a-448f-93a5-8561af6596ab - 10519 - dbtfirstproject_dbt_assets - STEP_FAILURE - Execution of step "dbtfirstproject_dbt_assets" failed.
+
+dagster_dbt.errors.DagsterDbtCliRuntimeError: The dbt CLI process with command
+
+`dbt build --select fqn:*`
+
+failed with exit code `2`. Check the stdout in the Dagster compute logs for the full information about the error, or view the dbt debug log: /Users/daniraouf/Documents/DBT /dbtfirstproject/target/dbtfirstproject_dbt_assets-ab87591-8b67b76/dbt.log.
+
+Errors parsed from dbt logs:
+
+Encountered an error:
+Runtime Error
+  Database error while listing schemas in database "AIRBNB"
+  Database Error
+    250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting
+
+Stack Trace:
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_plan.py", line 282, in dagster_event_sequence_for_step
+    for step_event in check.generator(step_events):
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 494, in core_dagster_event_sequence_for_step
+    for user_event in _step_output_error_checked_user_event_sequence(
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 183, in _step_output_error_checked_user_event_sequence
+    for user_event in user_event_sequence:
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster/_core/execution/plan/execute_step.py", line 88, in _process_asset_results_to_events
+    for user_event in user_event_sequence:
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster/_core/execution/plan/compute.py", line 198, in execute_core_compute
+    for step_output in _yield_compute_results(step_context, inputs, compute_fn, compute_context):
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster/_core/execution/plan/compute.py", line 167, in _yield_compute_results
+    for event in iterate_with_context(
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster/_utils/__init__.py", line 473, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/Users/daniraouf/Documents/DBT /dbt_dagster_project/dbt_dagster_project/assets.py", line 9, in dbtfirstproject_dbt_assets
+    yield from dbt.cli(["build"], context=context).stream()
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster_dbt/core/resources_v2.py", line 1147, in __next__
+    return next(self._inner_iterator)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster_dbt/core/resources_v2.py", line 619, in _stream_asset_events
+    for event in self.stream_raw_events():
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster_dbt/core/resources_v2.py", line 712, in stream_raw_events
+    self._raise_on_error()
+  File "/Users/daniraouf/Documents/DBT /venv/lib/python3.11/site-packages/dagster_dbt/core/resources_v2.py", line 804, in _raise_on_error
+    raise error
+[0m

@@ -1,0 +1,11 @@
+Running with dbt=1.8.4
+Registered adapter: snowflake=1.8.3
+Found 8 models, 1 snapshot, 1 analysis, 22 data tests, 1 seed, 3 sources, 1 exposure, 831 macros
+
+
+Finished running  in 0 hours 0 minutes and 1.07 seconds (1.07s).
+Encountered an error:
+Runtime Error
+  Database error while listing schemas in database "AIRBNB"
+  Database Error
+    250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting

@@ -1,0 +1,70 @@
+Running with dbt=1.8.4
+Registered adapter: snowflake=1.8.3
+Found 8 models, 1 snapshot, 1 analysis, 22 data tests, 1 seed, 3 sources, 1 exposure, 831 macros
+
+Concurrency: 1 threads (target='dev')
+
+1 of 29 START seed file DEV.seed_full_moon_dates ............................... [RUN]
+1 of 29 OK loaded seed file DEV.seed_full_moon_dates ........................... [[32mINSERT 272[0m in 7264.00s]
+2 of 29 START test dbt_expectations_source_expect_column_distinct_count_to_equal_airbnb_listings_room_type__4  [RUN]
+2 of 29 PASS dbt_expectations_source_expect_column_distinct_count_to_equal_airbnb_listings_room_type__4  [[32mPASS[0m in 1.94s]
+3 of 29 START test dbt_expectations_source_expect_column_values_to_match_regex_airbnb_listings_price___0_9_0_9_  [RUN]
+3 of 29 PASS dbt_expectations_source_expect_column_values_to_match_regex_airbnb_listings_price___0_9_0_9_  [[32mPASS[0m in 1421.84s]
+4 of 29 START sql view model DEV.dim_hosts_cleansed ............................ [RUN]
+4 of 29 OK created sql view model DEV.dim_hosts_cleansed ....................... [[32mSUCCESS 1[0m in 2.49s]
+5 of 29 START sql incremental model DEV.fct_reviews ............................ [RUN]
+Loading AIRBNB.DEV.fct_reviews incrementally (all missing dates)
+5 of 29 OK created sql incremental model DEV.fct_reviews ....................... [[32mSUCCESS 0[0m in 3.91s]
+6 of 29 START snapshot DEV.scd_raw_listings .................................... [RUN]
+6 of 29 OK snapshotted DEV.scd_raw_listings .................................... [[32mSUCCESS 0[0m in 2488.53s]
+7 of 29 START test accepted_values_dim_hosts_cleansed_is_superhost__t__f ....... [RUN]
+7 of 29 PASS accepted_values_dim_hosts_cleansed_is_superhost__t__f ............. [[32mPASS[0m in 1.41s]
+8 of 29 START test not_null_dim_hosts_cleansed_host_id ......................... [RUN]
+8 of 29 PASS not_null_dim_hosts_cleansed_host_id ............................... [[32mPASS[0m in 1.44s]
+9 of 29 START test not_null_dim_hosts_cleansed_host_name ....................... [RUN]
+9 of 29 PASS not_null_dim_hosts_cleansed_host_name ............................. [[32mPASS[0m in 1.55s]
+10 of 29 START test unique_dim_hosts_cleansed_host_id .......................... [RUN]
+10 of 29 PASS unique_dim_hosts_cleansed_host_id ................................ [[32mPASS[0m in 1.35s]
+11 of 29 START test accepted_values_fct_reviews_review_sentiment__positive__neutral__negative  [RUN]
+11 of 29 PASS accepted_values_fct_reviews_review_sentiment__positive__neutral__negative  [[32mPASS[0m in 1.37s]
+12 of 29 START test not_null_fct_reviews_reviewer_name ......................... [RUN]
+12 of 29 PASS not_null_fct_reviews_reviewer_name ............................... [[32mPASS[0m in 1.54s]
+13 of 29 START sql view model DEV.dim_listings_cleansed ........................ [RUN]
+13 of 29 OK created sql view model DEV.dim_listings_cleansed ................... [[32mSUCCESS 1[0m in 1.43s]
+14 of 29 START sql table model DEV.mart_fullmoon_review ........................ [RUN]
+14 of 29 OK created sql table model DEV.mart_fullmoon_review ................... [[32mSUCCESS 1[0m in 3.94s]
+15 of 29 START test accepted_values_dim_listings_cleansed_room_type__Entire_home_apt__Private_room__Shared_room__Hotel_room  [RUN]
+15 of 29 PASS accepted_values_dim_listings_cleansed_room_type__Entire_home_apt__Private_room__Shared_room__Hotel_room  [[32mPASS[0m in 1.47s]
+16 of 29 START test consistent_created_at ...................................... [RUN]
+16 of 29 PASS consistent_created_at ............................................ [[32mPASS[0m in 1.72s]
+17 of 29 START test dim_listings_minimun_nights ................................ [RUN]
+17 of 29 PASS dim_listings_minimun_nights ...................................... [[32mPASS[0m in 1.31s]
+18 of 29 START test no_nulls_in_dim_listings ................................... [RUN]
+18 of 29 PASS no_nulls_in_dim_listings ......................................... [[32mPASS[0m in 1.34s]
+19 of 29 START test not_null_dim_listings_cleansed_host_id ..................... [RUN]
+19 of 29 PASS not_null_dim_listings_cleansed_host_id ........................... [[32mPASS[0m in 0.98s]
+20 of 29 START test not_null_dim_listings_cleansed_listing_id .................. [RUN]
+20 of 29 ERROR not_null_dim_listings_cleansed_listing_id ....................... [[31mERROR[0m in 286.00s]
+21 of 29 START test positive_value_dim_listings_cleansed_minimum_nights ........ [RUN]
+21 of 29 PASS positive_value_dim_listings_cleansed_minimum_nights .............. [[32mPASS[0m in 1.45s]
+22 of 29 START test relationships_dim_listings_cleansed_host_id__host_id__ref_dim_hosts_cleansed_  [RUN]
+22 of 29 PASS relationships_dim_listings_cleansed_host_id__host_id__ref_dim_hosts_cleansed_  [[32mPASS[0m in 1.09s]
+23 of 29 START test relationships_fct_reviews_listing_id__listing_id__ref_dim_listings_cleansed_  [RUN]
+23 of 29 PASS relationships_fct_reviews_listing_id__listing_id__ref_dim_listings_cleansed_  [[32mPASS[0m in 2.14s]
+24 of 29 START test unique_dim_listings_cleansed_listing_id .................... [RUN]
+24 of 29 PASS unique_dim_listings_cleansed_listing_id .......................... [[32mPASS[0m in 0.99s]
+25 of 29 SKIP relation DEV.dim_listings_w_hosts ................................ [[33mSKIP[0m]
+26 of 29 SKIP test dbt_expectations_expect_column_max_to_be_between_dim_listings_w_hosts_price__5000  [[33mSKIP[0m]
+27 of 29 SKIP test dbt_expectations_expect_column_quantile_values_to_be_between_dim_listings_w_hosts_price__500__50__0_99  [[33mSKIP[0m]
+28 of 29 SKIP test dbt_expectations_expect_column_values_to_be_of_type_dim_listings_w_hosts_price__number  [[33mSKIP[0m]
+29 of 29 SKIP test dbt_expectations_expect_table_row_count_to_equal_other_table_dim_listings_w_hosts_source_airbnb_listings_  [[33mSKIP[0m]
+
+Finished running 1 seed, 22 data tests, 2 view models, 1 incremental model, 1 snapshot, 2 table models in 3 hours 11 minutes and 38.63 seconds (11498.63s).
+
+[31mCompleted with 1 error and 0 warnings:[0m
+
+  Database Error in test not_null_dim_listings_cleansed_listing_id (models/schema.yml)
+  250001: Could not connect to Snowflake backend after 1 attempt(s).Aborting
+  compiled Code at target/dbtfirstproject_dbt_assets-fb7e77e-1689d01/run/dbtfirstproject/models/schema.yml/not_null_dim_listings_cleansed_listing_id.sql
+
+Done. PASS=23 WARN=0 ERROR=1 SKIP=5 TOTAL=29
